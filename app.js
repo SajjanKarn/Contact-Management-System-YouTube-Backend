@@ -6,6 +6,10 @@ const connectDB = require("./config/db");
 
 const auth = require("./middlewares/auth");
 
+// routes imported
+const authRouter = require("./routes/auth");
+const contactRouter = require("./routes/contact");
+
 const app = express();
 
 // middlewares
@@ -14,8 +18,8 @@ app.use(morgan("tiny"));
 app.use(require("cors")());
 
 // routes
-app.use("/api", require("./routes/auth"));
-app.use("/api", require("./routes/contact"));
+app.use("/api", authRouter);
+app.use("/api", contactRouter);
 
 // server configurations.
 const PORT = process.env.PORT || 8000;
